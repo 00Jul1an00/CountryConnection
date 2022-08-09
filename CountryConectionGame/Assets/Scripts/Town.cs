@@ -1,18 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Town : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public event UnityAction<Town> TownClicked;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    private void OnMouseUpAsButton() => TownClicked?.Invoke(this);
 }

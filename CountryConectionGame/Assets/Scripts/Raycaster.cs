@@ -1,13 +1,20 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Raycaster : MonoBehaviour
 {
     private Vector2 _originVector;
     private Vector2 _endVector;
-    private bool _isConnected;
     private Town _startTown;
     private Town _endTown;
+
+    //Dubug
+    private Dictionary<Town, Town> _connectedTowns = new Dictionary<Town, Town>(10);
+
+    public event UnityAction<Vector2, Vector2> PathIsBuilt;
 
     private void Update()
     {
@@ -24,14 +31,17 @@ public class Raycaster : MonoBehaviour
             {
                 if (hitInfo.collider.TryGetComponent(out Town t))
                 {
-                    _isConnected = (t == _startTown || t == _endTown);
-                    Debug.Log(_isConnected);
+                    if (t == _startTown || t == _endTown)
+                    {
+                        if(_connectedTowns.TryAdd(_startTown, _endTown))
+                        {
+                            print(_connectedTowns.Count);
+                            PathIsBuilt?.Invoke(_originVector, _endVector);
+                        }
+                    }
                 }
-
             }
         }
-        _endTown = null;
-        _startTown = null;
     }
 
     private bool RoadBuilder(Func<int, bool> f, int T, Ray ray, ref Town town, ref Vector2 vector)
@@ -43,6 +53,7 @@ public class Raycaster : MonoBehaviour
                 if (hit.collider.TryGetComponent(out Town t))
                 {
                     vector = hit.transform.position;
+                    //print(vector);
                     town = t;
                     return true;
                 }
@@ -53,6 +64,7 @@ public class Raycaster : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawRay(_originVector, _endVector - _originVector);
+        //Gizmos.DrawRay(_originVector, _endVector - _originVector);
+        Gizmos.DrawLine(_originVector, _endVector);
     }
 }

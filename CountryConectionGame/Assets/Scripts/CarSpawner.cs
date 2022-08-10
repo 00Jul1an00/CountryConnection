@@ -19,7 +19,7 @@ public class CarSpawner : MonoBehaviour
 
     private void OnPathIsBuilt(Vector2 startPos, Vector2 endPos)
     {
-        Car carInstance = Instantiate(_carPrefab, startPos, Quaternion.identity);
+        Car carInstance = Instantiate(_carPrefab, startPos, Quaternion.identity, transform);
         carInstance.Init(startPos, endPos);
     }
 }

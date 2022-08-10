@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+
+// Зарефакторить и разбить по разным скриптам
 public class Raycaster : MonoBehaviour
 {
     private Vector2 _originVector;
@@ -11,10 +13,10 @@ public class Raycaster : MonoBehaviour
     private Town _startTown;
     private Town _endTown;
 
-    //Dubug
-    private Dictionary<Town, Town> _connectedTowns = new Dictionary<Town, Town>(10);
-
     public event UnityAction<Vector2, Vector2> PathIsBuilt;
+    public event UnityAction<Town, Town> TryConnect;
+
+    private List<Vector2> _blockedPaths = new List<Vector2>();
 
     private void Update()
     {
@@ -24,6 +26,14 @@ public class Raycaster : MonoBehaviour
 
         if(RoadBuilder(Input.GetMouseButtonUp, 0, ray, ref _endTown, ref _endVector))
         {
+            Vector2 path = _originVector + _endVector;
+
+            if (_blockedPaths.Contains(path))
+            {
+                print("this path already exist");
+                return;
+            }
+
             Ray checkCollisionRay = new Ray(_originVector, _endVector - _originVector);
             float distance = Vector2.Distance(_endVector, _originVector);
 
@@ -33,17 +43,14 @@ public class Raycaster : MonoBehaviour
                 {
                     if (t == _startTown || t == _endTown)
                     {
-                        if(_connectedTowns.TryAdd(_startTown, _endTown))
-                        {
-                            print(_connectedTowns.Count);
-                            PathIsBuilt?.Invoke(_originVector, _endVector);
-                        }
+                        PathIsBuilt?.Invoke(_originVector, _endVector);
+                        _blockedPaths.Add(path);
                     }
                 }
             }
         }
     }
-
+                        
     private bool RoadBuilder(Func<int, bool> f, int T, Ray ray, ref Town town, ref Vector2 vector)
     {
         if(f(T))

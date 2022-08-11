@@ -9,15 +9,17 @@ using UnityEngine.Events;
 public class Money : MonoBehaviour
 {
     
-    [SerializeField] private TMP_Text _moneyText;
-    protected float _money = 0;
+    [SerializeField] protected TMP_Text _moneyText;
+    protected float _money = 1000;
 
-    private UnityEvent<float> OnMoneyChanged;
+    public UnityAction<float> OnMoneyChanged;
 
-   
-    private void MoneyChanged()
+    private void Start()
+    {
+       
+    }
+    protected void MoneyChanged(float money)
     {       
-        OnMoneyChanged?.Invoke(_money);
-        _moneyText.text = _money.ToString();
+       _moneyText.text = money.ToString();
     }
 }

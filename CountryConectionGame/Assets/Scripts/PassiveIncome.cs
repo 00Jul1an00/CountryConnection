@@ -13,7 +13,7 @@ public class PassiveIncome : Money
     void Start()
     {
         StartCoroutine(IncomePerSec());
-        OnMoneyChanged += MoneyChanged(_money);
+        //OnMoneyChanged += MoneyChanged(_money);
     }
 
     

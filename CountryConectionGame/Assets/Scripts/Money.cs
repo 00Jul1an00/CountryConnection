@@ -8,15 +8,19 @@ using UnityEngine.Events;
 
 public class Money : MonoBehaviour
 {
-    
+    [SerializeField] private PassiveIncome _local;
     [SerializeField] protected TMP_Text _moneyText;
     protected float _money = 1000;
-
-    public UnityAction<float> OnMoneyChanged;
-
+  
     private void Start()
     {
-       
+        _local.OnMoneyChanged += MoneyChanged;
+        MoneyChanged(_money);
+    }
+
+    private void OnDisable()
+    {
+        _local.OnMoneyChanged -= MoneyChanged;
     }
     protected void MoneyChanged(float money)
     {       

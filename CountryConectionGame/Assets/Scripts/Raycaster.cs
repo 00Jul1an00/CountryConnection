@@ -8,13 +8,12 @@ using UnityEngine.Events;
 // Зарефакторить и разбить по разным скриптам
 public class Raycaster : MonoBehaviour
 {
-    private Vector2 _originVector;
+    private Vector2 _startVector;
     private Vector2 _endVector;
     private Town _startTown;
     private Town _endTown;
 
     public event UnityAction<Vector2, Vector2> PathIsBuilt;
-    public event UnityAction<Town, Town> TryConnect;
 
     private List<Vector2> _blockedPaths = new List<Vector2>();
 
@@ -22,11 +21,11 @@ public class Raycaster : MonoBehaviour
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-        RoadBuilder(Input.GetMouseButtonDown, 0, ray, ref _startTown, ref _originVector);
+        RoadBuilder(Input.GetMouseButtonDown, 0, ray, ref _startTown, ref _startVector);
 
         if(RoadBuilder(Input.GetMouseButtonUp, 0, ray, ref _endTown, ref _endVector))
         {
-            Vector2 path = _originVector + _endVector;
+            Vector2 path = _startVector + _endVector;
 
             if (_blockedPaths.Contains(path))
             {
@@ -34,8 +33,8 @@ public class Raycaster : MonoBehaviour
                 return;
             }
 
-            Ray checkCollisionRay = new Ray(_originVector, _endVector - _originVector);
-            float distance = Vector2.Distance(_endVector, _originVector);
+            Ray checkCollisionRay = new Ray(_startVector, _endVector - _startVector);
+            float distance = Vector2.Distance(_endVector, _startVector);
 
             if (Physics.Raycast(checkCollisionRay, out var hitInfo, distance))
             {
@@ -43,7 +42,7 @@ public class Raycaster : MonoBehaviour
                 {
                     if (t == _startTown || t == _endTown)
                     {
-                        PathIsBuilt?.Invoke(_originVector, _endVector);
+                        PathIsBuilt?.Invoke(_startVector, _endVector);
                         _blockedPaths.Add(path);
                     }
                 }
@@ -72,6 +71,6 @@ public class Raycaster : MonoBehaviour
     private void OnDrawGizmos()
     {
         //Gizmos.DrawRay(_originVector, _endVector - _originVector);
-        Gizmos.DrawLine(_originVector, _endVector);
+        Gizmos.DrawLine(_startVector, _endVector);
     }
 }

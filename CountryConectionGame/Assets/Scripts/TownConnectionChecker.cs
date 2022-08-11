@@ -16,12 +16,10 @@ public class TownConnectionChecker : MonoBehaviour
 
     private void OnEnable()
     {
-        _raycaster.TryConnect += OnTryConnect;
     }
 
     private void OnDisable()
     {
-        _raycaster.TryConnect -= OnTryConnect;
     }
 
     private void Update()

@@ -8,6 +8,8 @@ using UnityEngine.Events;
 // Зарефакторить и разбить по разным скриптам
 public class Raycaster : MonoBehaviour
 {
+    [SerializeField] LineRenderer _line;
+
     private Vector2 _startVector;
     private Vector2 _endVector;
     private Town _startTown;
@@ -20,11 +22,20 @@ public class Raycaster : MonoBehaviour
     private void Update()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        //Vector2 linePos = Camera.main.WorldToScreenPoint(Input.mousePosition);
 
-        RoadBuilder(Input.GetMouseButtonDown, 0, ray, ref _startTown, ref _startVector);
+
+        if(RoadBuilder(Input.GetMouseButtonDown, 0, ray, ref _startTown, ref _startVector))
+        {
+            _line.SetPosition(0, _startVector);
+            print(_startVector);
+            
+        }
 
         if(RoadBuilder(Input.GetMouseButtonUp, 0, ray, ref _endTown, ref _endVector))
         {
+
+
             Vector2 path = _startVector + _endVector;
 
             if (_blockedPaths.Contains(path))
@@ -44,6 +55,8 @@ public class Raycaster : MonoBehaviour
                     {
                         PathIsBuilt?.Invoke(_startVector, _endVector);
                         _blockedPaths.Add(path);
+                        _line.SetPosition(1, _endVector);
+                        Instantiate(_line, _startVector, Quaternion.identity);
                     }
                 }
             }

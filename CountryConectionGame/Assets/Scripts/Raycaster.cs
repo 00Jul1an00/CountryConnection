@@ -8,35 +8,29 @@ using UnityEngine.Events;
 // Зарефакторить и разбить по разным скриптам
 public class Raycaster : MonoBehaviour
 {
-    [SerializeField] LineRenderer _line;
-
-    private Vector2 _startVector;
-    private Vector2 _endVector;
+    private Vector2 _startTownPosition;
+    private Vector2 _endTownPosition;
     private Town _startTown;
     private Town _endTown;
 
     public event UnityAction<Vector2, Vector2> PathIsBuilt;
+    public event UnityAction<Vector2> FirstTownPositionGeted;
+    public event UnityAction<Vector2> LastTownPositionGeted;
 
     private List<Vector2> _blockedPaths = new List<Vector2>();
 
     private void Update()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        //Vector2 linePos = Camera.main.WorldToScreenPoint(Input.mousePosition);
 
-
-        if(RoadBuilder(Input.GetMouseButtonDown, 0, ray, ref _startTown, ref _startVector))
+        if(RoadBuilder(Input.GetMouseButtonDown, 0, ray, ref _startTown, ref _startTownPosition))
         {
-            _line.SetPosition(0, _startVector);
-            print(_startVector);
-            
+            FirstTownPositionGeted?.Invoke(_startTownPosition);
         }
 
-        if(RoadBuilder(Input.GetMouseButtonUp, 0, ray, ref _endTown, ref _endVector))
+        if(RoadBuilder(Input.GetMouseButtonUp, 0, ray, ref _endTown, ref _endTownPosition))
         {
-
-
-            Vector2 path = _startVector + _endVector;
+            Vector2 path = _startTownPosition + _endTownPosition;
 
             if (_blockedPaths.Contains(path))
             {
@@ -44,8 +38,8 @@ public class Raycaster : MonoBehaviour
                 return;
             }
 
-            Ray checkCollisionRay = new Ray(_startVector, _endVector - _startVector);
-            float distance = Vector2.Distance(_endVector, _startVector);
+            Ray checkCollisionRay = new Ray(_startTownPosition, _endTownPosition - _startTownPosition);
+            float distance = Vector2.Distance(_endTownPosition, _startTownPosition);
 
             if (Physics.Raycast(checkCollisionRay, out var hitInfo, distance))
             {
@@ -53,10 +47,13 @@ public class Raycaster : MonoBehaviour
                 {
                     if (t == _startTown || t == _endTown)
                     {
-                        PathIsBuilt?.Invoke(_startVector, _endVector);
+                        LastTownPositionGeted?.Invoke(_endTownPosition);
+                        PathIsBuilt?.Invoke(_startTownPosition, _endTownPosition);
                         _blockedPaths.Add(path);
-                        _line.SetPosition(1, _endVector);
-                        Instantiate(_line, _startVector, Quaternion.identity);
+                    }
+                    else
+                    {
+                        //FirstTownPositionGeted?.Invoke();
                     }
                 }
             }
@@ -72,7 +69,6 @@ public class Raycaster : MonoBehaviour
                 if (hit.collider.TryGetComponent(out Town t))
                 {
                     vector = hit.transform.position;
-                    //print(vector);
                     town = t;
                     return true;
                 }
@@ -84,6 +80,6 @@ public class Raycaster : MonoBehaviour
     private void OnDrawGizmos()
     {
         //Gizmos.DrawRay(_originVector, _endVector - _originVector);
-        Gizmos.DrawLine(_startVector, _endVector);
+        Gizmos.DrawLine(_startTownPosition, _endTownPosition);
     }
 }

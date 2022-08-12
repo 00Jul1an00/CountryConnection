@@ -4,19 +4,27 @@ using UnityEngine.EventSystems;
 
 public class Town : MonoBehaviour
 {
-    private int _townGrade = 1;
+    [SerializeField] private GameObject _upgradePanel;
+    private int _townGrade;
+    private int _currentGrade;
     private int _gradeCost;
-    private GameObject _panel;
-    private void OnMouseUpAsButton()
+    private int _currentCost;
+
+
+    private void Start()
+    {
+
+    }
+    private void OnMouseDown()
+    {
+        _upgradePanel.SetActive(true);
+    }
+
+    private void ClosePanel()
     {
         
     }
 
-    private void OpenPanel()
-    {
-        if (_panel != null)
-        {
-            bool isActive = _panel.activeSelf;
-        }
-    }
 }
+    
+

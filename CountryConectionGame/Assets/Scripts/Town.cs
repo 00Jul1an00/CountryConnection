@@ -1,11 +1,22 @@
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
 
 public class Town : MonoBehaviour
 {
-    public event UnityAction<Town> TownClicked;
+    private int _townGrade = 1;
+    private int _gradeCost;
+    private GameObject _panel;
+    private void OnMouseUpAsButton()
+    {
+        
+    }
 
-    private void OnMouseUpAsButton() => TownClicked?.Invoke(this);
-
-
+    private void OpenPanel()
+    {
+        if (_panel != null)
+        {
+            bool isActive = _panel.activeSelf;
+        }
+    }
 }

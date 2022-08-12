@@ -272,7 +272,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &341682247
 RectTransform:
   m_ObjectHideFlags: 0
@@ -307,8 +307,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f411a1e6239e224478a9a08d1d2e1aec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _local: {fileID: 0}
-  _moneyText: {fileID: 608061396}
   _passiveIncomeButton: {fileID: 341682249}
 --- !u!114 &341682249
 MonoBehaviour:
@@ -485,8 +483,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f411a1e6239e224478a9a08d1d2e1aec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _local: {fileID: 0}
-  _moneyText: {fileID: 0}
   _passiveIncomeButton: {fileID: 0}
 --- !u!1 &519420028
 GameObject:

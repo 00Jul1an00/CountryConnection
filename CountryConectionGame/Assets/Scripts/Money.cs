@@ -10,7 +10,7 @@ public class Money : MonoBehaviour
 {
     [SerializeField] private PassiveIncome _local;
     [SerializeField] protected TMP_Text _moneyText;
-    protected float _money = 1000;
+    public static float _money { get; private set; } = 1000;
   
     private void Start()
     {
@@ -23,7 +23,8 @@ public class Money : MonoBehaviour
         _local.OnMoneyChanged -= MoneyChanged;
     }
     protected void MoneyChanged(float money)
-    {       
-       _moneyText.text = money.ToString();
+    {
+        _money = money;
+       _moneyText.text = _money.ToString();
     }
 }

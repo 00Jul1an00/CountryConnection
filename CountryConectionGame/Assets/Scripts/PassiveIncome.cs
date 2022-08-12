@@ -4,28 +4,29 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
 
-public class PassiveIncome : Money
+public class PassiveIncome : MonoBehaviour
 {
 
-    
-    [SerializeField] private Button _passiveIncomeButton;
+    [SerializeField] private Button _passiveIncomeButton;   
     private int _purchaseQuantity = 0;
     private int _bonus = 10;
     private int _price = 100;
+    private float _localMoney;
 
     public event UnityAction<float> OnMoneyChanged;
 
     void Start()
     {
-        StartCoroutine(IncomePerSec());       
+        StartCoroutine(IncomePerSec());
+        _localMoney = Money._money;
     }
 
     
     public void Purchase()
     {      
-        if (_money >= _price)
+        if (_localMoney >= _price)
         {
-            _money -= _price;
+            _localMoney -= _price;
             _purchaseQuantity++;
             _price *= 2;           
         }
@@ -39,8 +40,8 @@ public class PassiveIncome : Money
     {
         while (true)
         {
-            _money += _bonus * _purchaseQuantity;
-            OnMoneyChanged?.Invoke(_money);
+            _localMoney += _bonus * _purchaseQuantity;
+            OnMoneyChanged?.Invoke(_localMoney);
             yield return new WaitForSeconds(1);
         }
     }

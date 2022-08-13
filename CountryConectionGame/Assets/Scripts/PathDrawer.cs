@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,7 +6,7 @@ using UnityEngine;
 public class PathDrawer : MonoBehaviour
 {
     [SerializeField] private LineRenderer _linePrefab;
-    [SerializeField] private Raycaster _raycaster;
+    [SerializeField] private PathBuilder _raycaster;
 
     private LineRenderer _lineRenderer;
     private Vector2 _startPos;
@@ -20,7 +21,11 @@ public class PathDrawer : MonoBehaviour
     {
         _mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        if (Input.GetMouseButton(0)) _lineRenderer.SetPosition(1, _mousePos);
+        if (Input.GetMouseButton(0))
+        {
+            ChangeLineColor();
+            _lineRenderer.SetPosition(1, _mousePos);
+        }
 
         if (Input.GetMouseButtonUp(0)) _lineRenderer.enabled = false;
     }
@@ -35,6 +40,25 @@ public class PathDrawer : MonoBehaviour
     {
         _raycaster.FirstTownPositionGeted -= OnFirstTownPositionGeted;
         _raycaster.LastTownPositionGeted -= OnLastTownPositionGeted;
+    }
+
+    private void ChangeLineColor()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        if (Physics.Raycast(ray, out var hit))
+        {
+            if (hit.collider.TryGetComponent(out Town t))
+            {
+                _lineRenderer.startColor = Color.blue;
+                _lineRenderer.endColor = Color.blue;
+            }
+        }
+        else
+        {
+            _lineRenderer.startColor = Color.red;
+            _lineRenderer.endColor = Color.red;
+        }
     }
 
     private void OnFirstTownPositionGeted(Vector2 pos)

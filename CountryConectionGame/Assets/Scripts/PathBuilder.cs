@@ -6,7 +6,7 @@ using UnityEngine.Events;
 
 
 // Зарефакторить и разбить по разным скриптам
-public class Raycaster : MonoBehaviour
+public class PathBuilder : MonoBehaviour
 {
     private Vector2 _startTownPosition;
     private Vector2 _endTownPosition;
@@ -21,14 +21,12 @@ public class Raycaster : MonoBehaviour
 
     private void Update()
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-        if(RoadBuilder(Input.GetMouseButtonDown, 0, ray, ref _startTown, ref _startTownPosition))
+        if(RoadBuilder(Input.GetMouseButtonDown, ref _startTown, ref _startTownPosition))
         {
             FirstTownPositionGeted?.Invoke(_startTownPosition);
         }
 
-        if(RoadBuilder(Input.GetMouseButtonUp, 0, ray, ref _endTown, ref _endTownPosition))
+        if(RoadBuilder(Input.GetMouseButtonUp, ref _endTown, ref _endTownPosition))
         {
             Vector2 path = _startTownPosition + _endTownPosition;
 
@@ -51,18 +49,16 @@ public class Raycaster : MonoBehaviour
                         PathIsBuilt?.Invoke(_startTownPosition, _endTownPosition);
                         _blockedPaths.Add(path);
                     }
-                    else
-                    {
-                        //FirstTownPositionGeted?.Invoke();
-                    }
                 }
             }
         }
     }
                         
-    private bool RoadBuilder(Func<int, bool> f, int T, Ray ray, ref Town town, ref Vector2 vector)
+    private bool RoadBuilder(Func<int, bool> f, ref Town town, ref Vector2 vector, int numInArg = 0)
     {
-        if(f(T))
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        if (f(numInArg))
         {
             if (Physics.Raycast(ray, out var hit))
             {
@@ -75,11 +71,5 @@ public class Raycaster : MonoBehaviour
             }
         }
         return false;
-    }
-
-    private void OnDrawGizmos()
-    {
-        //Gizmos.DrawRay(_originVector, _endVector - _originVector);
-        Gizmos.DrawLine(_startTownPosition, _endTownPosition);
     }
 }

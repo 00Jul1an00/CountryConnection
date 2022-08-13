@@ -5,7 +5,7 @@ using UnityEngine;
 public class TownConnectionChecker : MonoBehaviour
 {
     [SerializeField] private List<Town> _towns = new List<Town>();
-    [SerializeField] private Raycaster _raycaster;
+    [SerializeField] private PathBuilder _raycaster;
 
     private List<bool> _connections = new List<bool>();
 

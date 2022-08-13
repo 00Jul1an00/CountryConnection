@@ -854,7 +854,7 @@ RectTransform:
   - {fileID: 608061398}
   - {fileID: 341682247}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1017,7 +1017,7 @@ Transform:
   - {fileID: 898151966}
   - {fileID: 1259327180}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1259327179
 GameObject:

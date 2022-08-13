@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CarSpawner : MonoBehaviour
 {
-    [SerializeField] private Raycaster _raycaster;
+    [SerializeField] private PathBuilder _raycaster;
     [SerializeField] private Car _carPrefab;
 
     private void OnEnable()

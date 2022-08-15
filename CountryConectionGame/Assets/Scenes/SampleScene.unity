@@ -741,7 +741,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7b72aabcb7e31a4bad351697ddeaf71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _local: {fileID: 341682248}
+  _localPassiveIncome: {fileID: 341682248}
+  _localTown: {fileID: 4594901376110260620, guid: 26109c0824b42aa4b8d5d492ba34f98d, type: 3}
   _moneyText: {fileID: 608061396}
 --- !u!114 &735780480 stripped
 MonoBehaviour:

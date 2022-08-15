@@ -23,7 +23,7 @@ public class PathDrawer : MonoBehaviour
 
         if (Input.GetMouseButton(0))
         {
-            ChangeLineColor();
+            OnPathIsReadyToBuild();
             _lineRenderer.SetPosition(1, _mousePos);
         }
 
@@ -34,31 +34,20 @@ public class PathDrawer : MonoBehaviour
     {
         _raycaster.FirstTownPositionGeted += OnFirstTownPositionGeted;
         _raycaster.LastTownPositionGeted += OnLastTownPositionGeted;
+        _raycaster.PathIsReadyToBuild += OnPathIsReadyToBuild;
     }
 
     private void OnDisable()
     {
         _raycaster.FirstTownPositionGeted -= OnFirstTownPositionGeted;
         _raycaster.LastTownPositionGeted -= OnLastTownPositionGeted;
+        _raycaster.PathIsReadyToBuild -= OnPathIsReadyToBuild;
     }
 
-    private void ChangeLineColor()
+    private void OnPathIsReadyToBuild()
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-        if (Physics.Raycast(ray, out var hit))
-        {
-            if (hit.collider.TryGetComponent(out Town t))
-            {
-                _lineRenderer.startColor = Color.blue;
-                _lineRenderer.endColor = Color.blue;
-            }
-        }
-        else
-        {
-            _lineRenderer.startColor = Color.red;
-            _lineRenderer.endColor = Color.red;
-        }
+        _lineRenderer.startColor = Color.blue;
+        _lineRenderer.endColor = Color.blue;
     }
 
     private void OnFirstTownPositionGeted(Vector2 pos)

@@ -144,7 +144,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2636301380512464126, guid: 26109c0824b42aa4b8d5d492ba34f98d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.274229
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2636301380512464126, guid: 26109c0824b42aa4b8d5d492ba34f98d, type: 3}
       propertyPath: m_LocalRotation.w
@@ -174,17 +174,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5035853035057496797, guid: 26109c0824b42aa4b8d5d492ba34f98d, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6934806500249726264, guid: 26109c0824b42aa4b8d5d492ba34f98d, type: 3}
       propertyPath: m_Name
       value: Town (8)
-      objectReference: {fileID: 0}
-    - target: {fileID: 6934806500249726264, guid: 26109c0824b42aa4b8d5d492ba34f98d, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 26109c0824b42aa4b8d5d492ba34f98d, type: 3}
@@ -209,7 +201,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2636301380512464126, guid: 26109c0824b42aa4b8d5d492ba34f98d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.274229
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2636301380512464126, guid: 26109c0824b42aa4b8d5d492ba34f98d, type: 3}
       propertyPath: m_LocalRotation.w
@@ -242,10 +234,6 @@ PrefabInstance:
     - target: {fileID: 6934806500249726264, guid: 26109c0824b42aa4b8d5d492ba34f98d, type: 3}
       propertyPath: m_Name
       value: Town (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 6934806500249726264, guid: 26109c0824b42aa4b8d5d492ba34f98d, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 26109c0824b42aa4b8d5d492ba34f98d, type: 3}
@@ -882,7 +870,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2636301380512464126, guid: 26109c0824b42aa4b8d5d492ba34f98d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.274229
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2636301380512464126, guid: 26109c0824b42aa4b8d5d492ba34f98d, type: 3}
       propertyPath: m_LocalRotation.w
@@ -915,10 +903,6 @@ PrefabInstance:
     - target: {fileID: 6934806500249726264, guid: 26109c0824b42aa4b8d5d492ba34f98d, type: 3}
       propertyPath: m_Name
       value: Town (6)
-      objectReference: {fileID: 0}
-    - target: {fileID: 6934806500249726264, guid: 26109c0824b42aa4b8d5d492ba34f98d, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 26109c0824b42aa4b8d5d492ba34f98d, type: 3}
@@ -1002,7 +986,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1193203838}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.538539, y: -0.75881755, z: 1.274229}
+  m_LocalPosition: {x: 0, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1015,7 +999,6 @@ Transform:
   - {fileID: 1942711821}
   - {fileID: 392163242}
   - {fileID: 898151966}
-  - {fileID: 1259327180}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1044,12 +1027,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1259327179}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.538539, y: 0.75881755, z: -1.274229}
+  m_LocalPosition: {x: 0, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1193203840}
-  m_RootOrder: 9
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1259327181
 MonoBehaviour:
@@ -1102,7 +1085,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2636301380512464126, guid: 26109c0824b42aa4b8d5d492ba34f98d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.274229
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2636301380512464126, guid: 26109c0824b42aa4b8d5d492ba34f98d, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1135,10 +1118,6 @@ PrefabInstance:
     - target: {fileID: 6934806500249726264, guid: 26109c0824b42aa4b8d5d492ba34f98d, type: 3}
       propertyPath: m_Name
       value: Town (7)
-      objectReference: {fileID: 0}
-    - target: {fileID: 6934806500249726264, guid: 26109c0824b42aa4b8d5d492ba34f98d, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 26109c0824b42aa4b8d5d492ba34f98d, type: 3}
@@ -1179,7 +1158,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2636301380512464126, guid: 26109c0824b42aa4b8d5d492ba34f98d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.274229
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2636301380512464126, guid: 26109c0824b42aa4b8d5d492ba34f98d, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1212,10 +1191,6 @@ PrefabInstance:
     - target: {fileID: 6934806500249726264, guid: 26109c0824b42aa4b8d5d492ba34f98d, type: 3}
       propertyPath: m_Name
       value: Town (4)
-      objectReference: {fileID: 0}
-    - target: {fileID: 6934806500249726264, guid: 26109c0824b42aa4b8d5d492ba34f98d, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 26109c0824b42aa4b8d5d492ba34f98d, type: 3}
@@ -1375,7 +1350,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2636301380512464126, guid: 26109c0824b42aa4b8d5d492ba34f98d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.274229
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2636301380512464126, guid: 26109c0824b42aa4b8d5d492ba34f98d, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1409,10 +1384,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Town (5)
       objectReference: {fileID: 0}
-    - target: {fileID: 6934806500249726264, guid: 26109c0824b42aa4b8d5d492ba34f98d, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 26109c0824b42aa4b8d5d492ba34f98d, type: 3}
 --- !u!1001 &1827542678
@@ -1436,7 +1407,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2636301380512464126, guid: 26109c0824b42aa4b8d5d492ba34f98d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.274229
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2636301380512464126, guid: 26109c0824b42aa4b8d5d492ba34f98d, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1470,10 +1441,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Town (3)
       objectReference: {fileID: 0}
-    - target: {fileID: 6934806500249726264, guid: 26109c0824b42aa4b8d5d492ba34f98d, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 26109c0824b42aa4b8d5d492ba34f98d, type: 3}
 --- !u!1001 &1859770124
@@ -1497,7 +1464,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2636301380512464126, guid: 26109c0824b42aa4b8d5d492ba34f98d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.274229
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2636301380512464126, guid: 26109c0824b42aa4b8d5d492ba34f98d, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1530,10 +1497,6 @@ PrefabInstance:
     - target: {fileID: 6934806500249726264, guid: 26109c0824b42aa4b8d5d492ba34f98d, type: 3}
       propertyPath: m_Name
       value: Town (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 6934806500249726264, guid: 26109c0824b42aa4b8d5d492ba34f98d, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 26109c0824b42aa4b8d5d492ba34f98d, type: 3}
@@ -1788,7 +1751,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2636301380512464126, guid: 26109c0824b42aa4b8d5d492ba34f98d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.274229
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2636301380512464126, guid: 26109c0824b42aa4b8d5d492ba34f98d, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1821,10 +1784,6 @@ PrefabInstance:
     - target: {fileID: 6934806500249726264, guid: 26109c0824b42aa4b8d5d492ba34f98d, type: 3}
       propertyPath: m_Name
       value: Town
-      objectReference: {fileID: 0}
-    - target: {fileID: 6934806500249726264, guid: 26109c0824b42aa4b8d5d492ba34f98d, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 26109c0824b42aa4b8d5d492ba34f98d, type: 3}

@@ -10,70 +10,73 @@ public class PathBuilder : MonoBehaviour
 {
     private Vector2 _startTownPosition;
     private Vector2 _endTownPosition;
+    private Vector2 path;
     private Town _startTown;
     private Town _endTown;
-    private Ray checkCollisionRay;
-    private float distance;
-    private Vector2 path;
 
+    public bool CanBuildPath { get; private set; } = false;
 
     public event UnityAction<Vector2, Vector2> PathIsBuilt;
     public event UnityAction<Vector2> FirstTownPositionGeted;
     public event UnityAction<Vector2> LastTownPositionGeted;
-    public event UnityAction PathIsReadyToBuild;
 
     private List<Vector2> _blockedPaths = new List<Vector2>();
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0) && RoadBuilder(ref _startTown, ref _startTownPosition))
+        if (RoadBuilder(Input.GetMouseButtonDown, ref _startTown, ref _startTownPosition))
         {
             FirstTownPositionGeted?.Invoke(_startTownPosition);
         }
 
-        if (Input.GetMouseButton(0) && (RoadBuilder(ref _endTown, ref _endTownPosition)))
+        if (RoadBuilder(Input.GetMouseButton, ref _endTown, ref _endTownPosition))
         {
             path = _startTownPosition + _endTownPosition;
 
             if (_blockedPaths.Contains(path))
-            {
-                print("this path already exist");
                 return;
-            }
 
-            checkCollisionRay = new Ray(_startTownPosition, _endTownPosition - _startTownPosition);
-            distance = Vector2.Distance(_endTownPosition, _startTownPosition);
-        }
+            Ray checkCollisionRay = new Ray(_startTownPosition, _endTownPosition - _startTownPosition);
+            float distance = Vector2.Distance(_endTownPosition, _startTownPosition);
 
-        if (Physics.Raycast(checkCollisionRay, out var hitInfo, distance))
-        {
-            if (hitInfo.collider.TryGetComponent(out Town t))
+            if (Physics.Raycast(checkCollisionRay, out var hitInfo, distance))
             {
-                if (t == _startTown || t == _endTown)
+                if (hitInfo.collider.TryGetComponent(out Town t))
                 {
-                    PathIsReadyToBuild?.Invoke();
-                    if(Input.GetMouseButtonUp(0))
+                    if (t == _startTown || t == _endTown)
                     {
-                        LastTownPositionGeted?.Invoke(_endTownPosition);
-                        PathIsBuilt?.Invoke(_startTownPosition, _endTownPosition);
-                        _blockedPaths.Add(path);
+                        CanBuildPath = true;
                     }
                 }
             }
         }
+
+        if (Input.GetMouseButtonUp(0) && CanBuildPath)
+        {
+            LastTownPositionGeted?.Invoke(_endTownPosition);
+            PathIsBuilt?.Invoke(_startTownPosition, _endTownPosition);
+            _blockedPaths.Add(path);
+        }
     }
                         
-    private bool RoadBuilder(ref Town town, ref Vector2 vector)
+    private bool RoadBuilder(Func<int, bool> f, ref Town town, ref Vector2 vector, int numInFunc = 0)
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-        if (Physics.Raycast(ray, out var hit))
+        if (f(numInFunc))
         {
-            if (hit.collider.TryGetComponent(out Town t))
+            if (Physics.Raycast(ray, out var hit))
             {
-                vector = hit.transform.position;
-                town = t;
-                return true;
+                if (hit.collider.TryGetComponent(out Town t))
+                {
+                    vector = hit.transform.position;
+                    town = t;
+                    return true;
+                }
+            }
+            else
+            {
+                CanBuildPath = false;
             }
         }
         return false;

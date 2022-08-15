@@ -23,7 +23,7 @@ public class PathDrawer : MonoBehaviour
 
         if (Input.GetMouseButton(0))
         {
-            OnPathIsReadyToBuild();
+            ChangeLineColor();
             _lineRenderer.SetPosition(1, _mousePos);
         }
 
@@ -34,20 +34,24 @@ public class PathDrawer : MonoBehaviour
     {
         _raycaster.FirstTownPositionGeted += OnFirstTownPositionGeted;
         _raycaster.LastTownPositionGeted += OnLastTownPositionGeted;
-        _raycaster.PathIsReadyToBuild += OnPathIsReadyToBuild;
     }
 
     private void OnDisable()
     {
         _raycaster.FirstTownPositionGeted -= OnFirstTownPositionGeted;
         _raycaster.LastTownPositionGeted -= OnLastTownPositionGeted;
-        _raycaster.PathIsReadyToBuild -= OnPathIsReadyToBuild;
     }
 
-    private void OnPathIsReadyToBuild()
+    private void ChangeLineColor()
     {
-        _lineRenderer.startColor = Color.blue;
-        _lineRenderer.endColor = Color.blue;
+        if (_raycaster.CanBuildPath)
+        {
+            _lineRenderer.SetColors(Color.blue, Color.blue);
+        }
+        else
+        {
+            _lineRenderer.SetColors(Color.red, Color.red);
+        }
     }
 
     private void OnFirstTownPositionGeted(Vector2 pos)

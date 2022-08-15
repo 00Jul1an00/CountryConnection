@@ -11,21 +11,23 @@ public class TownConnectionChecker : MonoBehaviour
 
     private void Start()
     {
-        
     }
 
     private void OnEnable()
-    {
+    {   
     }
 
     private void OnDisable()
     {
     }
 
+
     private void Update()
     {
-        
+
     }
+
+    
 
     public void OnTryConnect(Town startTown, Town endTown)
     {

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Car : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class Car : MonoBehaviour
     private Vector2 _endAnimPoint;
     private bool _isReachedTown = false;
 
+    public event UnityAction<int> CarReachedTown;
 
     public void Init(Vector2 _startPoint, Vector2 _endPoint)
     {
@@ -21,9 +23,9 @@ public class Car : MonoBehaviour
 
     private void Update()
     {
-        if(_distance >= 1)
+        if (_distance >= 1)
             _isReachedTown = true;
-        else if(_distance <= 0.01)
+        else if (_distance <= 0.01)
             _isReachedTown = false;
 
         if (_isReachedTown)
@@ -33,5 +35,14 @@ public class Car : MonoBehaviour
 
 
         transform.position = Vector2.Lerp(_startAnimPoint, _endAnimPoint, _distance);
+    }
+
+    private void OnTriggerEnter(Collider collider)
+    {
+        if(collider.TryGetComponent(out Town t))
+        {
+            print("t");
+            CarReachedTown?.Invoke(_income);
+        }
     }
 }

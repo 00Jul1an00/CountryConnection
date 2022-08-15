@@ -8,21 +8,23 @@ using UnityEngine.Events;
 
 public class Money : MonoBehaviour
 {
-    [SerializeField] private PassiveIncome _local;
+    [SerializeField] private PassiveIncome _localPassiveIncome;
+    [SerializeField] private Town _localTown;
     [SerializeField] protected TMP_Text _moneyText;
     public static float _money { get; private set; } = 1000;
   
     private void Start()
     {
-        _local.OnMoneyChanged += MoneyChanged;
+        _localPassiveIncome.OnMoneyChanged += MoneyChanged;
+        _localTown.OnMoneyChanged += MoneyChanged;
         MoneyChanged(_money);
     }
 
     private void OnDisable()
     {
-        _local.OnMoneyChanged -= MoneyChanged;
+        _localPassiveIncome.OnMoneyChanged -= MoneyChanged;
     }
-    protected void MoneyChanged(float money)
+    private void MoneyChanged(float money)
     {
         _money = money;
        _moneyText.text = _money.ToString();

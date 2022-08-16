@@ -9,18 +9,20 @@ public class Town : MonoBehaviour
 {
     [SerializeField] private GameObject _upgradePanel;
     [SerializeField] private Button _upgradeButton;   
+
     private int _townGrade = 1;
     private int _currentGrade;
     private int _gradeCost = 100;
     private int _currentCost;
-    private float _localMoney;
+    private static float _localMoney;
 
-    public event UnityAction<float> OnMoneyChanged;
+    public event UnityAction<float> MoneyChanged;
+
     private void Start()
     {
-        _localMoney = Money._money;
-        
+        _localMoney = Money.PlayerMoney;    
     }
+
     private void OnMouseUpAsButton()
     {        
         _upgradePanel.SetActive(true);
@@ -37,18 +39,28 @@ public class Town : MonoBehaviour
         StartCoroutine(ClosePanel());
     }
 
-    public void _upgradeClick()
+    public void UpgradeClick()
     {
         if (_localMoney >= _gradeCost)
         {
             _localMoney -= _gradeCost;
-            OnMoneyChanged?.Invoke(_localMoney);
+            MoneyChanged?.Invoke(_localMoney);
             _gradeCost += (_gradeCost * _townGrade + 1);
             _townGrade++;
         }
         else
         {
             Debug.Log("У вас недостаточно средств!");
+        }
+    }
+
+    private void OnTriggerEnter(Collider collider)
+    {
+        if (collider.TryGetComponent(out Car car))
+        {
+            _localMoney += car.Income;
+            MoneyChanged?.Invoke(_localMoney);
+            print(_localMoney);
         }
     }
 }

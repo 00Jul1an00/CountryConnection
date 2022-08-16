@@ -13,7 +13,7 @@ public class Car : MonoBehaviour
     private Vector2 _endAnimPoint;
     private bool _isReachedTown = false;
 
-    public event UnityAction<int> CarReachedTown;
+    public int Income => _income;
 
     public void Init(Vector2 _startPoint, Vector2 _endPoint)
     {
@@ -35,14 +35,5 @@ public class Car : MonoBehaviour
 
 
         transform.position = Vector2.Lerp(_startAnimPoint, _endAnimPoint, _distance);
-    }
-
-    private void OnTriggerEnter(Collider collider)
-    {
-        if(collider.TryGetComponent(out Town t))
-        {
-            print("t");
-            CarReachedTown?.Invoke(_income);
-        }
     }
 }

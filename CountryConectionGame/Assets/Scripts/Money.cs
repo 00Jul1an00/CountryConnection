@@ -10,23 +10,23 @@ public class Money : MonoBehaviour
 {
     [SerializeField] private PassiveIncome _localPassiveIncome;
     [SerializeField] private Town _localTown;
-    [SerializeField] protected TMP_Text _moneyText;
-    public static float _money { get; private set; } = 1000;
+    [SerializeField] private TMP_Text _moneyText;
+    public static float PlayerMoney { get; private set; } = 1000;
   
     private void Start()
     {
-        _localPassiveIncome.OnMoneyChanged += MoneyChanged;
-        _localTown.OnMoneyChanged += MoneyChanged;
-        MoneyChanged(_money);
+        _localPassiveIncome.MoneyChanged += OnMoneyChanged;
+        _localTown.MoneyChanged += OnMoneyChanged;
+        OnMoneyChanged(PlayerMoney);
     }
 
     private void OnDisable()
     {
-        _localPassiveIncome.OnMoneyChanged -= MoneyChanged;
+        _localPassiveIncome.MoneyChanged -= OnMoneyChanged;
     }
-    private void MoneyChanged(float money)
+    private void OnMoneyChanged(float money)
     {
-        _money = money;
-       _moneyText.text = _money.ToString();
+        PlayerMoney = money;
+       _moneyText.text = PlayerMoney.ToString();
     }
 }

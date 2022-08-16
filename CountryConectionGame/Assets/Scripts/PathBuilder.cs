@@ -5,12 +5,11 @@ using UnityEngine;
 using UnityEngine.Events;
 
 
-// Зарефакторить и разбить по разным скриптам
 public class PathBuilder : MonoBehaviour
 {
     private Vector2 _startTownPosition;
     private Vector2 _endTownPosition;
-    private Vector2 path;
+    private Vector2 _path;
     private Town _startTown;
     private Town _endTown;
 
@@ -31,9 +30,9 @@ public class PathBuilder : MonoBehaviour
 
         if (RoadBuilder(Input.GetMouseButton, ref _endTown, ref _endTownPosition))
         {
-            path = _startTownPosition + _endTownPosition;
+            _path = _startTownPosition + _endTownPosition;
 
-            if (_blockedPaths.Contains(path))
+            if (_blockedPaths.Contains(_path))
                 return;
 
             Ray checkCollisionRay = new Ray(_startTownPosition, _endTownPosition - _startTownPosition);
@@ -55,7 +54,7 @@ public class PathBuilder : MonoBehaviour
         {
             LastTownPositionGeted?.Invoke(_endTownPosition);
             PathIsBuilt?.Invoke(_startTownPosition, _endTownPosition);
-            _blockedPaths.Add(path);
+            _blockedPaths.Add(_path);
         }
     }
                         

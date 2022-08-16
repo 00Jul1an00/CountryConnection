@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1156980734892633139}
   - component: {fileID: 2039152292010622539}
   - component: {fileID: 5441641614162246144}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: LevelText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -146,7 +146,7 @@ GameObject:
   - component: {fileID: 3976221468347607681}
   - component: {fileID: 3572384127919418197}
   - component: {fileID: 2704943234350687640}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: UpgradeText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -282,7 +282,7 @@ GameObject:
   - component: {fileID: 87201386542962056}
   - component: {fileID: 1275238854920771148}
   - component: {fileID: 5199154845867293584}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -383,7 +383,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5639692490667175473}
   - component: {fileID: 6049174161792699707}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -469,7 +469,7 @@ GameObject:
   - component: {fileID: 803805337672478249}
   - component: {fileID: 3908331904080364632}
   - component: {fileID: 6997991475307905159}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: UpgradeButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -602,7 +602,7 @@ GameObject:
   - component: {fileID: 5886462524603708528}
   - component: {fileID: 5376732110333645742}
   - component: {fileID: 6226871851409600764}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Profit text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -735,7 +735,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8851753031627650168}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Upgrade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -772,7 +772,7 @@ GameObject:
   - component: {fileID: 4749414385909688208}
   - component: {fileID: 4594901376110260620}
   - component: {fileID: 2369649736605092793}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Town
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -884,7 +884,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8413420292761369691}
   - component: {fileID: 4690563906669192547}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Isometric Diamond
   m_TagString: Untagged
   m_Icon: {fileID: 0}

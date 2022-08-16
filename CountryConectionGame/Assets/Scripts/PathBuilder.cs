@@ -14,6 +14,7 @@ public class PathBuilder : MonoBehaviour
     private Town _endTown;
 
     public bool CanBuildPath { get; private set; } = false;
+    public static bool StartingBuildPath { get; private set; } = false;
 
     public event UnityAction<Vector2, Vector2> PathIsBuilt;
     public event UnityAction<Vector2> FirstTownPositionGeted;
@@ -26,6 +27,7 @@ public class PathBuilder : MonoBehaviour
         if (RoadBuilder(Input.GetMouseButtonDown, ref _startTown, ref _startTownPosition))
         {
             FirstTownPositionGeted?.Invoke(_startTownPosition);
+            StartingBuildPath = true;
         }
 
         if (RoadBuilder(Input.GetMouseButton, ref _endTown, ref _endTownPosition))
@@ -50,11 +52,17 @@ public class PathBuilder : MonoBehaviour
             }
         }
 
-        if (Input.GetMouseButtonUp(0) && CanBuildPath)
+        if (Input.GetMouseButtonUp(0))
         {
-            LastTownPositionGeted?.Invoke(_endTownPosition);
-            PathIsBuilt?.Invoke(_startTownPosition, _endTownPosition);
-            _blockedPaths.Add(_path);
+            StartingBuildPath = false;
+
+            if(CanBuildPath)
+            {
+                LastTownPositionGeted?.Invoke(_endTownPosition);
+                PathIsBuilt?.Invoke(_startTownPosition, _endTownPosition);
+                _blockedPaths.Add(_path);
+            }
+            
         }
     }
                         

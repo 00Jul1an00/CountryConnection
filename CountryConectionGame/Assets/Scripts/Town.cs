@@ -60,7 +60,6 @@ public class Town : MonoBehaviour
         {
             _localMoney += car.Income;
             MoneyChanged?.Invoke(_localMoney);
-            print(_localMoney);
         }
     }
 }

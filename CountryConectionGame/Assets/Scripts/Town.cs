@@ -8,7 +8,8 @@ using UnityEngine.UI;
 public class Town : MonoBehaviour
 {
     [SerializeField] private GameObject _upgradePanel;
-    [SerializeField] private Button _upgradeButton;   
+    [SerializeField] private Button _upgradeButton;
+    [SerializeField] private GameObject _parentTown;
 
     private int _townGrade = 1;
     private int _currentGrade;
@@ -20,7 +21,7 @@ public class Town : MonoBehaviour
 
     private void Start()
     {
-        _localMoney = Money.PlayerMoney;    
+        _localMoney = Money.PlayerMoney;      
     }
 
     private void OnMouseUpAsButton()

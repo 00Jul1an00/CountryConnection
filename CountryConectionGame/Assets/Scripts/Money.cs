@@ -9,20 +9,32 @@ using UnityEngine.Events;
 public class Money : MonoBehaviour
 {
     [SerializeField] private PassiveIncome _localPassiveIncome;
-    [SerializeField] private Town _localTown;
+    [SerializeField] private Town[] _townArray;
     [SerializeField] private TMP_Text _moneyText;
+    [SerializeField] private GameObject _parentTown;
+    private int _townCount;
     public static float PlayerMoney { get; private set; } = 1000;
   
     private void Start()
     {
+        _townCount = _parentTown.transform.childCount;
+        _townArray = new Town[_townCount];
+        for (int i = 0; i < _townCount; i++)
+        {
+            _townArray[i] = _parentTown.
+            _townArray[i].MoneyChanged += OnMoneyChanged;
+        }
         _localPassiveIncome.MoneyChanged += OnMoneyChanged;
-        _localTown.MoneyChanged += OnMoneyChanged;
         OnMoneyChanged(PlayerMoney);
     }
 
     private void OnDisable()
     {
         _localPassiveIncome.MoneyChanged -= OnMoneyChanged;
+        for (int i = 0; i < _townArray.Length; i++)
+        {
+            _townArray[i].MoneyChanged -= OnMoneyChanged;
+        }
     }
     private void OnMoneyChanged(float money)
     {

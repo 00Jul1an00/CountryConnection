@@ -700,7 +700,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad1d50c9e87f215439518d04a745be3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _camereMovingSpeed: 15
+  _camereMovingSpeed: 5
+  _zoomSpeed: 40
 --- !u!1 &608061395
 GameObject:
   m_ObjectHideFlags: 0
@@ -850,8 +851,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _localPassiveIncome: {fileID: 341682248}
-  _localTown: {fileID: 4594901376110260620, guid: 26109c0824b42aa4b8d5d492ba34f98d, type: 3}
+  _townArray: []
   _moneyText: {fileID: 608061396}
+  _parentTown: {fileID: 0}
 --- !u!1 &626025319
 GameObject:
   m_ObjectHideFlags: 0

@@ -21,8 +21,8 @@ public class Money : MonoBehaviour
         _townArray = new Town[_townCount];
         for (int i = 0; i < _townCount; i++)
         {
-            _townArray[i] = _parentTown.
-            _townArray[i].MoneyChanged += OnMoneyChanged;
+            //_townArray[i] = _parentTown.
+            //_townArray[i].MoneyChanged += OnMoneyChanged;
         }
         _localPassiveIncome.MoneyChanged += OnMoneyChanged;
         OnMoneyChanged(PlayerMoney);

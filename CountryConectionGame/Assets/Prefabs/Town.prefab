@@ -581,7 +581,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4594901376110260620}
         m_TargetAssemblyTypeName: Town, Assembly-CSharp
-        m_MethodName: _upgradeClick
+        m_MethodName: UpgradeClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -861,6 +861,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _upgradePanel: {fileID: 5035853035057496797}
   _upgradeButton: {fileID: 6997991475307905159}
+  _parentTown: {fileID: 0}
 --- !u!135 &2369649736605092793
 SphereCollider:
   m_ObjectHideFlags: 0

@@ -21,7 +21,7 @@ public class Town : MonoBehaviour
 
     private void Start()
     {
-        _localMoney = Money.PlayerMoney;      
+        _localMoney = Money.PlayerMoney;
     }
 
     private void OnMouseUpAsButton()
@@ -59,8 +59,9 @@ public class Town : MonoBehaviour
     {
         if (collider.TryGetComponent(out Car car))
         {
-            _localMoney += car.Income;
+            _localMoney = car.Income;            
             MoneyChanged?.Invoke(_localMoney);
+            _localMoney = Money.PlayerMoney;
         }
     }
 }

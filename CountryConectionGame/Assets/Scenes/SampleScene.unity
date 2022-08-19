@@ -851,8 +851,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _localPassiveIncome: {fileID: 341682248}
-  _moneyText: {fileID: 608061396}
-  _locationManager: {fileID: 1854734324}
 --- !u!1 &626025319
 GameObject:
   m_ObjectHideFlags: 0
@@ -1652,7 +1650,7 @@ GameObject:
   - component: {fileID: 1854734325}
   - component: {fileID: 1854734324}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: LocManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1670,6 +1668,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85ba0c7f85b0b7c48bde1bbd13ca6981, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _townsList: []
+  _regionsList: []
 --- !u!4 &1854734325
 Transform:
   m_ObjectHideFlags: 0
@@ -2044,6 +2044,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8008725539312038424, guid: 864cd5d587f20e844ae59a4902e4fef4, type: 3}
       propertyPath: price
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 8008725539312038424, guid: 864cd5d587f20e844ae59a4902e4fef4, type: 3}
+      propertyPath: _price
       value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8008725539312038424, guid: 864cd5d587f20e844ae59a4902e4fef4, type: 3}

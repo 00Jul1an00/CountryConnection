@@ -9,21 +9,32 @@ public class Town : MonoBehaviour
 {
     [SerializeField] private GameObject _upgradePanel;
     [SerializeField] private Button _upgradeButton;
-    [SerializeField] private GameObject _parentTown;
-
+    [SerializeField] private GameObject _parent;
+    private Canvas _upgradeCanvas;
+    
     private int _townGrade = 1;
     private int _currentGrade;
     private int _gradeCost = 100;
     private int _currentCost;
     private static float _localMoney;
 
-    public event UnityAction<float> MoneyChanged;
+    //private void Start()
+    //{
+    //    _upgradeCanvas = _parent.transform.GetChild(2).GetComponent<Canvas>();
+    //    _upgradeCanvas.overrideSorting = true;
+    //}
 
-    private void Start()
+    private void FixedUpdate()
     {
-        _localMoney = Money.PlayerMoney;
+        _upgradeCanvas.overrideSorting = true;
     }
-
+    private void OnEnable()
+    {
+        _upgradeCanvas = _parent.transform.GetChild(2).GetComponent<Canvas>();
+        _upgradeCanvas.overrideSorting = true;
+        print(_upgradeCanvas.name);
+        print(_upgradeCanvas.overrideSorting);
+    }
     private void OnMouseUpAsButton()
     {        
         _upgradePanel.SetActive(true);
@@ -42,10 +53,9 @@ public class Town : MonoBehaviour
 
     public void UpgradeClick()
     {
-        if (_localMoney >= _gradeCost)
-        {
-            _localMoney -= _gradeCost;
-            MoneyChanged?.Invoke(_localMoney);
+        if (Money.PlayerMoney >= _gradeCost)
+        {           
+            Money.MoneySetter(-_gradeCost, this);
             _gradeCost += (_gradeCost * _townGrade + 1);
             _townGrade++;
         }
@@ -59,9 +69,7 @@ public class Town : MonoBehaviour
     {
         if (collider.TryGetComponent(out Car car))
         {
-            _localMoney = car.Income;            
-            MoneyChanged?.Invoke(_localMoney);
-            _localMoney = Money.PlayerMoney;
+            Money.MoneySetter(car.Income, this);
         }
     }
 }

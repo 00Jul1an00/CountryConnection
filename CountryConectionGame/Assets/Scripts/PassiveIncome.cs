@@ -11,24 +11,15 @@ public class PassiveIncome : MonoBehaviour
     private int _purchaseQuantity = 0;
     private int _bonus = 10;
     private int _price = 100;
-    private float _localMoney;
-
-    public event UnityAction<float> MoneyChanged;
-
-    void Update()
-    {
-        _localMoney = Money.PlayerMoney;
-    }
-
-    
+  
     public void Purchase()
     {      
         if (_purchaseQuantity == 1)
             StartCoroutine(IncomePerSec());
 
-        if (_localMoney >= _price)
-        {
-            _localMoney -= _price;
+        if (Money.PlayerMoney >= _price)
+        {            
+            Money.MoneySetter(-_price, this);
             _purchaseQuantity++;
             _price *= 2;           
         }
@@ -41,10 +32,8 @@ public class PassiveIncome : MonoBehaviour
     IEnumerator IncomePerSec()
     {
         while (true)
-        {
-            _localMoney = _bonus * _purchaseQuantity;
-            MoneyChanged?.Invoke(_localMoney);
-            _localMoney = Money.PlayerMoney;
+        {            
+            Money.MoneySetter(_bonus * _purchaseQuantity, this);
             yield return new WaitForSeconds(1);
         }
     }

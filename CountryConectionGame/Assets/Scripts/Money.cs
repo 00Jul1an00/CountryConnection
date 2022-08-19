@@ -4,37 +4,43 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Events;
+using System;
 
 
 public class Money : MonoBehaviour
 {
     [SerializeField] private PassiveIncome _localPassiveIncome;
-    [SerializeField] private TMP_Text _moneyText;
-    [SerializeField] private LocationManager _locationManager;
+    private static TMP_Text _moneyText;    
     public static float PlayerMoney { get; private set; }
-  
+
     private void Start()
     {
-        _localPassiveIncome.MoneyChanged += OnMoneyChanged;
-        OnMoneyChanged(PlayerMoney);
+        _moneyText = GetComponent<TMP_Text>();
     }
+    public static void MoneySetter(float money, object objectChanger)
+    {
+        if (objectChanger is PassiveIncome)
+        {
+            PlayerMoney += money;
+        }
+        else if (objectChanger is Town)
+        {
+            PlayerMoney += money;
+        }
+        else if (objectChanger is RegionUnlocker)
+        {
+            PlayerMoney += money;
+        }
+        else
+        {
+            throw new Exception("пидарас");
+        }
 
-    private void OnEnable()
-    {
-        _locationManager.TownListSubscriber(OnMoneyChanged);
-        _locationManager.RegionListSubscriber(OnMoneyChanged);
+        _moneyText.text = PlayerMoney.ToString();
     }
-    private void OnDisable()
-    {
-        _locationManager.TownListUnsubscriber(OnMoneyChanged);
-        _locationManager.RegionListUnsubscriber(OnMoneyChanged);
-        _localPassiveIncome.MoneyChanged -= OnMoneyChanged;
-    }
-    private void OnMoneyChanged(float money)
-    {
-        PlayerMoney += money;
-       _moneyText.text = PlayerMoney.ToString();
-    }
+   
+    
+    
 
 
 

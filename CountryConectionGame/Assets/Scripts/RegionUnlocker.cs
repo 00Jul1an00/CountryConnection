@@ -8,28 +8,22 @@ public class RegionUnlocker : MonoBehaviour
 {
     [SerializeField] private List<Town> _townsInRegion;
     [SerializeField] private GameObject _lockPanel;
-    [SerializeField] private int price;
-
-    private float _playerMoney;
-
-    public UnityAction<float> MoneyChanged;
-
-    private void Start()
-    {
-        _playerMoney = Money.PlayerMoney;
-
+    [SerializeField] private int _price;
+    
+    private void Awake()
+    {        
         foreach (Town town in _townsInRegion)
             town.gameObject.SetActive(false);
     }
 
     public void OnRegionUnlockButtonClick()
     {
-        if (_playerMoney > price)
+        if (Money.PlayerMoney >= _price)
         {
-            _playerMoney -= price;
-            MoneyChanged?.Invoke(_playerMoney);
+            Money.MoneySetter(-_price, this);
 
-            _lockPanel.SetActive(false);
+            //_lockPanel.SetActive(false);
+            Destroy(_lockPanel);
 
             foreach (Town town in _townsInRegion)
                 town.gameObject.SetActive(true);
@@ -37,6 +31,6 @@ public class RegionUnlocker : MonoBehaviour
         else
             print("no money???");
 
-        print(_playerMoney);
+        print(Money.PlayerMoney);
     }
 }

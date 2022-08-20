@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using System;
 
 public class Car : MonoBehaviour
 {
-    [SerializeField] private float _speed;
+    [SerializeField] private static float _speed = 0.4f;
     [SerializeField] private int _income;
 
     private float _distance = 0;
@@ -35,5 +36,17 @@ public class Car : MonoBehaviour
 
 
         transform.position = Vector2.Lerp(_startAnimPoint, _endAnimPoint, _distance);
+    }
+
+    public static void SpeedSetter(float adSpeed, object objectChanger)
+    {
+        if (objectChanger is SpeedUpgrade)
+       {
+           _speed += adSpeed;
+        }
+        else
+       {
+            throw new Exception("пидарас");
+       }
     }
 }

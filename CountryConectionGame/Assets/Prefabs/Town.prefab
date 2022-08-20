@@ -35,7 +35,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -62.9, y: 18.5}
+  m_AnchoredPosition: {x: -68.8, y: 18.5}
   m_SizeDelta: {x: 102.78, y: 53.56}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2039152292010622539
@@ -201,7 +201,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Upgrade
+  m_text: Upgrade = 100
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -494,8 +494,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 128.8, y: 17.1}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 126.44, y: 17.1}
+  m_SizeDelta: {x: 245.03, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &803805337672478249
 CanvasRenderer:
@@ -626,7 +626,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 83.4, y: 19.5}
+  m_AnchoredPosition: {x: 79.6, y: 19.5}
   m_SizeDelta: {x: 102.78, y: 53.56}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5376732110333645742
@@ -862,6 +862,9 @@ MonoBehaviour:
   _upgradePanel: {fileID: 5035853035057496797}
   _upgradeButton: {fileID: 6997991475307905159}
   _parent: {fileID: 5035853035057496797}
+  _levelText: {fileID: 5441641614162246144}
+  _profitText: {fileID: 6226871851409600764}
+  _buttonText: {fileID: 2704943234350687640}
 --- !u!135 &2369649736605092793
 SphereCollider:
   m_ObjectHideFlags: 0

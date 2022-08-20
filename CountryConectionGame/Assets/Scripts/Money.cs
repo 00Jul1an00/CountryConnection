@@ -31,6 +31,10 @@ public class Money : MonoBehaviour
         {
             PlayerMoney += money;
         }
+        else if (objectChanger is SpeedUpgrade)
+        {
+            PlayerMoney += money;
+        }
         else
         {
             throw new Exception("пидарас");
